@@ -5,5 +5,10 @@ set -e
 gem install bundler --conservative --no-document
 bundle check || bundle install
 
+# Set up configurable environment variables
+if [ ! -f .env ]; then
+  cp .sample.env .env
+fi
+
 # Add binstubs to PATH via export PATH=".git/safe/../../bin:$PATH" in ~/.zshenv
 mkdir -p .git/safe
