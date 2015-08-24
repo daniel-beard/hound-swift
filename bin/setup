@@ -12,3 +12,8 @@ fi
 
 # Add binstubs to PATH via export PATH=".git/safe/../../bin:$PATH" in ~/.zshenv
 mkdir -p .git/safe
+
+if ! command -v foreman > /dev/null; then
+  printf 'Foreman is not installed.\nInstalling...'
+  gem install foreman && rbenv rehash
+fi

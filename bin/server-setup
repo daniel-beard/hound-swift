@@ -1,0 +1,24 @@
+#!/bin/sh
+
+set -e
+
+# Run Laptop script to set up enviornment
+curl --remote-name https://raw.githubusercontent.com/thoughtbot/laptop/master/mac
+sh mac 2>&1 | tee ~/.laptop.log
+
+# Change shell to zsh
+/bin/zsh
+
+# Install project specific ruby
+rbenv install 2.2.2
+
+# Install SwiftLint
+git clone https://github.com/realm/SwiftLint.git ~/SwiftLint
+cd ~/SwiftLint
+make install
+
+# Install hound-swift
+git clone https://github.com/thoughtbot/hound-swift.git ~/hound-swift
+cd ~/hound-swift
+bin/setup
+
