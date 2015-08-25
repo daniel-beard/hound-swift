@@ -1,4 +1,5 @@
 require "resque"
+require "awesome_print"
 
 require "swift_lint"
 require "swift_lint/runner"
@@ -25,6 +26,9 @@ class SwiftReviewJob
       patch: attributes.fetch("patch"),
       violations: violations
     )
+  rescue => error
+    ap error
+    ap error.backtrace
   end
 
   def self.violations_for_content(content)
