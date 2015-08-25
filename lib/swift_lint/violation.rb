@@ -1,6 +1,6 @@
 module SwiftLint
   class Violation
-    LINE_NUMBER_REGEX = /.+:(\d+):/
+    LINE_NUMBER_REGEX = /<nopath>:(\d+)/
     MESSAGE_REGEX = /(?:warning|error):\s?(.+)/
 
     def initialize(violation_string)

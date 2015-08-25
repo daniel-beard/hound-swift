@@ -35,7 +35,7 @@ class SwiftReviewJob
     swift_lint_runner = SwiftLint::Runner.new
     swift_violations = swift_lint_runner.violations_for(content)
 
-    violations = swift_violations.map do |violation|
+    swift_violations.map do |violation|
       { line: violation.line_number, message: violation.message }
     end
   end
