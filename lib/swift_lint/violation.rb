@@ -7,6 +7,13 @@ module SwiftLint
       @violation = violation_string
     end
 
+    def to_hash
+      {
+        line: line_number,
+        message: message,
+      }
+    end
+
     def line_number
       LINE_NUMBER_REGEX.match(violation)[1].to_i
     end

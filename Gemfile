@@ -8,6 +8,6 @@ gem "dotenv"
 gem "awesome_print"
 
 group :test, :development do
-  gem "byebug"
   gem "rspec"
+  gem "pry"
 end

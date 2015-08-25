@@ -2,10 +2,10 @@ require "swift_lint/violation"
 
 module SwiftLint
   class Runner
-    def violations_for(content)
-      violation_strings = execute_swiftlint(content).split("\n")
+    def violations_for(file)
+      violation_strings = execute_swiftlint(file.content).split("\n")
       violation_strings.map do |violation_string|
-        Violation.new(violation_string)
+        Violation.new(violation_string).to_hash
       end
     end
 
