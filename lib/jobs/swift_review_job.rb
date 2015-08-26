@@ -1,6 +1,7 @@
 require "resque"
 require "awesome_print"
 
+require "config_options"
 require "jobs/completed_file_review_job"
 require "swift_lint"
 require "swift_lint/file"
@@ -17,8 +18,9 @@ class SwiftReviewJob
     # content
     # config
 
+    config = config_for(attributes: attributes)
     file = file_for(attributes: attributes)
-    violations = violations_for(file: file)
+    violations = violations_for(file: file, config: config)
 
     completed_file_review(
       file: file,
@@ -38,8 +40,8 @@ class SwiftReviewJob
     )
   end
 
-  def self.violations_for(file:)
-    swift_lint_runner = SwiftLint::Runner.new
+  def self.violations_for(file:, config:)
+    swift_lint_runner = SwiftLint::Runner.new(config)
     swift_lint_runner.violations_for(file)
   end
 
@@ -48,5 +50,9 @@ class SwiftReviewJob
       attributes.fetch("filename"),
       attributes.fetch("content"),
     )
+  end
+
+  def self.config_for(attributes:)
+    ConfigOptions.new(attributes["config"])
   end
 end
