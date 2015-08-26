@@ -1,0 +1,16 @@
+#!/bin/sh
+
+# Usage:
+# $ bin/hound-swiftlint "swiftlint config yml" "file to lint content"
+
+set -e
+
+temp_config=/tmp/swiftlint_config
+yaml_config=$1
+file_content=$2
+
+rm -rf "$temp_config"
+echo "$yaml_config" > $temp_config
+swiftlint_output="$(printf "$file_content" | swiftlint lint --use-stdin --config $temp_config)"
+rm -rf "$temp_config"
+echo "$swiftlint_output"

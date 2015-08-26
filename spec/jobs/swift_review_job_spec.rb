@@ -4,7 +4,8 @@ require "jobs/swift_review_job"
 describe SwiftReviewJob do
   describe ".perform" do
     it "enqueues review job with violations" do
-      runner = SwiftLint::Runner.new
+      config = ConfigOptions.new
+      runner = SwiftLint::Runner.new(config)
       allow(Resque).to receive(:enqueue)
       allow(SwiftLint::Runner).to receive(:new).and_return(runner)
       allow(runner).
@@ -31,7 +32,8 @@ describe SwiftReviewJob do
     end
 
     def swiftlint_response
-      "<nopath>:1: warning: " \
+      "Loading configuration from /tmp/hound_swiftlint_config\n" \
+        "<nopath>:1: warning: " \
         "Trailing Whitespace Violation (Medium Severity): " \
         "Line #1 should have no trailing whitespace: " \
         "current has 1 trailing whitespace characters\n"
