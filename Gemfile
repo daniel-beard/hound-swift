@@ -2,12 +2,14 @@ source "https://rubygems.org"
 
 ruby "2.2.2"
 
+gem "awesome_print"
+gem "dotenv"
 gem "rake"
 gem "resque"
-gem "dotenv"
-gem "awesome_print"
+gem "resque-sentry"
+gem "sentry-raven"
 
 group :test, :development do
-  gem "rspec"
   gem "pry"
+  gem "rspec"
 end

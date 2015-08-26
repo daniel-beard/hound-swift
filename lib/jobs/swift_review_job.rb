@@ -25,9 +25,6 @@ class SwiftReviewJob
       attributes: attributes,
       violations: violations,
     )
-  rescue => error
-    ap error
-    ap error.backtrace
   end
 
   def self.completed_file_review(file:, attributes:, violations:)
