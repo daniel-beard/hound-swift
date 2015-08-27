@@ -15,7 +15,7 @@ Thank you, [contributors]!
 We expect all contributors to follow thoughtbot's [code of conduct].
 
 [CONTRIBUTING]: CONTRIBUTING.md
-[contributors]: https://github.com/thoughtbot/$(REPO_NAME)/graphs/contributors
+[contributors]: https://github.com/thoughtbot/hound-swift/graphs/contributors
 [code of conduct]: https://thoughtbot.com/open-source-code-of-conduct
 
 # License
@@ -23,7 +23,7 @@ We expect all contributors to follow thoughtbot's [code of conduct].
 hound-swift is Copyright (c) 2015 thoughtbot, inc. It is free software,
 and may be redistributed under the terms specified in the [LICENSE] file.
 
-[LICENSE]: /LICENSE
+[LICENSE]: /LICENSE.md
 
 About
 -----
