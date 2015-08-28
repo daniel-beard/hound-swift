@@ -8,6 +8,10 @@ gem "dotenv"
 gem "awesome_print"
 
 group :test, :development do
-  gem "rspec"
   gem "pry"
+end
+
+group :test do
+  gem "climate_control"
+  gem "rspec"
 end
