@@ -25,7 +25,10 @@ module SwiftLint
     end
 
     def execute_swiftlint(content)
-      cmd = "bin/hound-swiftlint \"#{config.to_yaml}\" \"#{content}\""
+      cmd = "bin/hound-swiftlint "   \
+            "\"#{config.version}\" " \
+            "\"#{config.to_swiftlint_yaml}\" " \
+            "\"#{content}\""
       system_call.call(cmd)
     end
   end

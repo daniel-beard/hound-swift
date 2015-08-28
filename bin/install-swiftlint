@@ -1,0 +1,30 @@
+#!/bin/sh
+
+# Usage:
+# $ bin/install-swiftlint "gh-ref"
+# 
+# If you are installing a version that requires
+# a different version of Xcode,
+# you must set it first with:
+#
+# $ sudo xcode-select -s /path/to/Xcode.app/Contents/Developer
+
+set -e
+
+ref=$1
+swiftlint_root_path=~/SwiftLint
+swiftlint_git_path=$swiftlint_root_path/$ref
+swiftlint_prefix_path=$swiftlint_root_path/binaries/$ref
+
+mkdir -p $swiftlint_root_path
+mkdir -p $swiftlint_prefix_path
+
+if [ ! -d $swiftlint_git_path ]; then
+  git clone https://github.com/realm/SwiftLint.git $swiftlint_git_path
+fi
+
+cd $swiftlint_git_path
+git pull
+git checkout $ref
+
+PREFIX=$swiftlint_prefix_path make prefix_install

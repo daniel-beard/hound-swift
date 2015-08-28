@@ -6,11 +6,14 @@
 set -e
 
 temp_config=/tmp/swiftlint_config
-yaml_config=$1
-file_content=$2
+swift_lint_version=$1
+yaml_config=$2
+file_content=$3
+swift_lint_binary=~/SwiftLint/binaries/$swift_lint_version/bin/swiftlint
 
-rm -rf "$temp_config"
-echo "$yaml_config" > $temp_config
-swiftlint_output="$(printf "$file_content" | swiftlint lint --use-stdin --config $temp_config)"
-rm -rf "$temp_config"
-echo "$swiftlint_output"
+echo $swift_lint_binary
+# rm -rf "$temp_config"
+# echo "$yaml_config" > $temp_config
+# swiftlint_output="$(printf "$file_content" | $swift_lint_binary lint --use-stdin --config $temp_config)"
+# rm -rf "$temp_config"
+# echo "$swiftlint_output"
