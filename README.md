@@ -2,7 +2,8 @@
 
 [![Build Status](https://circleci.com/gh/thoughtbot/hound-swift/tree/master.svg?style=svg)](https://circleci.com/gh/thoughtbot/hound-swift/tree/master)
 
-Swift review service for Hound.
+Swift review service for Hound. Backed by
+[SwiftLint](https://github.com/realm/SwiftLint).
 
 The service consists of a simple job class that uses Redis as a queue to
 coordinate work with Hound.
