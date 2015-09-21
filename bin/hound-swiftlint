@@ -10,11 +10,13 @@ yaml_config="$1"
 file_name="$2"
 file_content="$3"
 file_path=/tmp/$file_name
+file_directory=$(dirname "$file_path")
 
 rm -rf "$temp_config"
 rm -rf "$file_path"
-printf "$yaml_config" > "$temp_config"
-printf "$file_content" > "$file_path"
+mkdir -p "$file_directory"
+printf -- "$yaml_config" > "$temp_config"
+printf -- "$file_content" > "$file_path"
 swiftlint_output="$(swiftlint lint --path $file_path --config $temp_config)"
 rm -rf "$temp_config"
 rm -rf "$file_path"
