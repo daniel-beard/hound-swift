@@ -18,5 +18,17 @@ describe SwiftLint::Runner do
       expected_command = "bin/hound-swiftlint #{args}"
       expect(system_call).to have_received(:call).with(expected_command)
     end
+
+    if /darwin/ =~ RUBY_PLATFORM
+      it "returns all violations" do
+        config = ConfigOptions.new("")
+        file = SwiftLint::File.new("file.swift", "let x = 1")
+        runner = SwiftLint::Runner.new(config)
+
+        violations = runner.violations_for(file)
+
+        expect(violations.size).to eq(2)
+      end
+    end
   end
 end
