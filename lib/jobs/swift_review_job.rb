@@ -21,6 +21,7 @@ class SwiftReviewJob
     config = config_for(attributes: attributes)
     file = file_for(attributes: attributes)
     violations = violations_for(file: file, config: config)
+    puts "Found #{violations.size} violation(s) for #{file.name}"
 
     completed_file_review(
       file: file,
