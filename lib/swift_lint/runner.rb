@@ -25,10 +25,14 @@ module SwiftLint
 
     def execute_swiftlint(file)
       cmd = "bin/hound-swiftlint " \
-        "\"#{config.to_yaml}\" " \
-        "\"#{file.name}\" " \
-        "\"#{file.content}\""
+        "'#{escape(config.to_yaml)}' " \
+        "'#{escape(file.name)}' " \
+        "'#{escape(file.content)}'"
       system_call.call(cmd)
+    end
+
+    def escape(string)
+      return string.gsub(/'/) { "\\047" }
     end
 
     def message_parsable?(string)
