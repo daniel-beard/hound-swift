@@ -1,3 +1,4 @@
+reporter: json
 disabled_rules:
 included:
 excluded:

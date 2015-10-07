@@ -19,7 +19,7 @@ module SwiftLint
     attr_reader :command_output, :command_status
 
     def run_command(cmd)
-      @command_output, @command_status = Open3.capture2e(cmd)
+      @command_output, @command_status = Open3.capture2(cmd)
     end
 
     def last_command_successful?

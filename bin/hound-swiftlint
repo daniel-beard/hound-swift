@@ -11,13 +11,15 @@ file_name="$2"
 file_content="$3"
 file_path=/tmp/$file_name
 file_directory=$(dirname "$file_path")
+lint_output_file=/tmp/${file_name}.output.json
 
 rm -rf "$temp_config"
 rm -rf "$file_path"
 mkdir -p "$file_directory"
 printf -- "$yaml_config" > "$temp_config"
 printf -- "$file_content" > "$file_path"
-swiftlint_output="$(swiftlint lint --path $file_path --config $temp_config)"
+swiftlint lint --path $file_path --config $temp_config > $lint_output_file 2>/dev/null
 rm -rf "$temp_config"
 rm -rf "$file_path"
-echo "$swiftlint_output"
+cat $lint_output_file
+rm $lint_output_file

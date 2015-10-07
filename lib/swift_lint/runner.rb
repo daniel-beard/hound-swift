@@ -19,8 +19,8 @@ module SwiftLint
     attr_reader :config, :system_call
 
     def violation_strings(file)
-      result = execute_swiftlint(file).split("\n")
-      result.select { |string| message_parsable?(string) }
+      result = execute_swiftlint(file)
+      JSON.parse(result)
     end
 
     def execute_swiftlint(file)
@@ -29,10 +29,6 @@ module SwiftLint
         "\"#{file.name}\" " \
         "\"#{file.content}\""
       system_call.call(cmd)
-    end
-
-    def message_parsable?(string)
-      SwiftLint::Violation.parsable?(string)
     end
   end
 end
